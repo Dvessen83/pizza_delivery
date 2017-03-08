@@ -1,9 +1,10 @@
 #pizza_delivery.rb
 require_relative "menu.rb"
+require_relative "order.rb"
 
 
 menu = Menu.new
-
+order = Order.new
 
 
 
@@ -22,6 +23,7 @@ while not done
   puts "What can I do for you?"
   puts "1: Order a pizza"
   puts "2: Nothing"
+  puts "3: Check out (€#{order.value})" if order.value > 0
   puts "------------------------------"
 
   #get some input from the customer
@@ -30,6 +32,8 @@ while not done
     when 1
       puts "Let me show you the menu"
       menu.print
+      pizza = menu.make_choice
+      order.add(pizza)
     when 2
       done = true
     else
